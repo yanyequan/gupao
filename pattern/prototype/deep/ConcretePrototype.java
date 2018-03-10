@@ -9,8 +9,6 @@ import java.io.Serializable;
 public class ConcretePrototype extends Prototype implements Serializable{
 
 	private static final long serialVersionUID = -3864660316605130039L;
-	public String name;
-	public ConcretePrototype prototype;
 	
 	@Override
 	protected Prototype clone() {
@@ -21,8 +19,7 @@ public class ConcretePrototype extends Prototype implements Serializable{
 	public Prototype copy(){
 		
 		ConcretePrototype concreteprototype = new ConcretePrototype();
-		concreteprototype.name = this.name;
-		
+		concreteprototype.name = this.name;		
 		concreteprototype.prototype = new ConcretePrototype();
 		concreteprototype.prototype.name = this.prototype.name;
 		
@@ -37,11 +34,14 @@ public class ConcretePrototype extends Prototype implements Serializable{
 			oos.writeObject(this);
 			
 			ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
-			ObjectInputStream ois;
-			ois = new ObjectInputStream(bis);
-			ConcretePrototype prototype = (ConcretePrototype)ois.readObject();
+			ObjectInputStream ois = new ObjectInputStream(bis);
 			
-			return prototype;
+			ConcretePrototype concreteprototype = (ConcretePrototype)ois.readObject();
+			concreteprototype.name = this.name;
+			concreteprototype.prototype = new ConcretePrototype();
+			concreteprototype.prototype.name = this.prototype.name;
+			
+			return concreteprototype;
 					
 		} catch (Exception e) {
 			e.printStackTrace();

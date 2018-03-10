@@ -1,7 +1,10 @@
 package com.pattern.prototype.simple;
 
-public class Prototype implements Cloneable{
+public abstract class Prototype implements Cloneable{
 
+	public String name;
+	public Prototype prototype;
+	
 	@Override
 	protected Prototype clone() {
 		

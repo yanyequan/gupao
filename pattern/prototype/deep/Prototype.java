@@ -1,6 +1,9 @@
 package com.pattern.prototype.deep;
 
 public class Prototype implements Cloneable{
+	
+	public String name;
+	public Prototype prototype;
 
 	@Override
 	protected Prototype clone() {
